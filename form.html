@@ -301,90 +301,18 @@ button:hover {
   font-size: 16px;
   color: #555;
 }
-.container-2 {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 20px;
-      gap: 20px;
-      justify-content: center;
-    }
-
-    .form-section, .list-section {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      width: 400px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h2 {
-      margin-top: 0;
-      font-size: 22px;
-    }
-
-    input, textarea {
-      width: 100%;
-      margin-bottom: 15px;
-      padding: 8px;
-      font-size: 16px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-    }
-
-    textarea {
-      resize: vertical;
-    }
-
-    button {
-      background: #3498db;
-      color: white;
-      padding: 10px;
-      font-size: 16px;
-      width: 100%;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #2980b9;
-    }
-
-    #jobList-2 {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    #jobList-2 li {
-      padding: 10px;
-      background: #ecf0f1;
-      margin-bottom: 8px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-
-    #jobList li:hover {
-      background: #d0e4f1;
-    }
-
-    .job-details-2 {
-      margin-top: 20px;
-      background: #fdfdfd;
-      padding: 15px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      word-wrap: break-word;
-    }
-
 
     .container-2 {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 20px;
-      gap: 20px;
-      justify-content: center;
+		display: flex;
+		flex-wrap: wrap;
+		padding: 20px;
+		gap: 20px;
+		justify-content: center;
+		background: #fefaf6; /* Light background */
+		border-radius: 10px;
+		box-shadow: 0 0 10px rgba(0,0,0,0.05); /* Soft shadow */
+		margin: 30px auto;
+		max-width: 900px;
     }
 
     .form-section-2, .list-section-2 {
@@ -402,12 +330,12 @@ button:hover {
 
     input.input-2, textarea.textarea-2 {
       width: 100%;
-      margin-bottom: 15px;
-      padding: 8px;
-      font-size: 16px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
+		margin-bottom: 15px;
+		padding: 10px 12px;
+		font-size: 16px;
+		border-radius: 12px; /* <-- more rounded */
+		border: 1px solid #ccc;
+		box-sizing: border-box;
     }
 
     textarea.textarea-2 {
@@ -415,7 +343,7 @@ button:hover {
     }
 
     button.btn-2 {
-      background: #78a8b1;
+      background: #3498db;
       color: white;
       padding: 10px;
       font-size: 16px;
@@ -429,7 +357,7 @@ button:hover {
       background: #2980b9;
     }
 
-    ul#jobList-2 {   
+    ul#jobList-2 {
       list-style: none;
       padding: 0;
       margin: 0;
@@ -576,7 +504,7 @@ button:hover {
 			 
 
 <!-- START  --->
-<br><br>      
+     
 
 <div class="container-2">
     <!-- Job Form Section -->
@@ -586,8 +514,11 @@ button:hover {
         <label for="jobNumber-2">Job Number</label>
         <input type="text" id="jobNumber-2" class="input-2" required />
 
+        <label for="property-2">Property Name</label>
+        <input type="text" id="property-2" class="input-2" required />
+
         <label for="address-2">Address</label>
-        <textarea id="address-2" class="textarea-2" rows="3" required></textarea>
+        <textarea id="address-2" class="textarea-2" rows="2" required></textarea>
 
         <label for="contact-2">Contact Person</label>
         <input type="text" id="contact-2" class="input-2" required />
@@ -614,12 +545,13 @@ button:hover {
     form2.addEventListener("submit", function(e) {
       e.preventDefault();
       const jobNumber = document.getElementById("jobNumber-2").value.trim();
+      const property = document.getElementById("property-2").value.trim();
       const address = document.getElementById("address-2").value.trim();
       const contact = document.getElementById("contact-2").value.trim();
 
-      if (!jobNumber || !address || !contact) return;
+      if (!jobNumber || !property || !address || !contact) return;
 
-      const job = { jobNumber, address, contact };
+      const job = { jobNumber, property, address, contact };
       jobs2.push(job);
       displayJobs2();
       form2.reset();
@@ -629,7 +561,7 @@ button:hover {
       jobList2.innerHTML = "";
       jobs2.forEach((job, index) => {
         const li = document.createElement("li");
-        li.textContent = job.jobNumber;
+        li.textContent = `${job.jobNumber} — ${job.property}`;
         li.onclick = () => showDetails2(index);
         jobList2.appendChild(li);
       });
@@ -639,13 +571,14 @@ button:hover {
       const job = jobs2[index];
       jobDetails2.innerHTML = `
         <strong>Job Number:</strong> ${job.jobNumber}<br>
+        <strong>Property Name:</strong> ${job.property}<br>
         <strong>Address:</strong> ${job.address}<br>
         <strong>Contact:</strong> ${job.contact}
       `;
     }
   </script>
 
-<br><br>
+
 <br><br>
 
 <!-- START  --->
